@@ -126,11 +126,7 @@ void draw() {
   //    the less that the shimmering spreads.  The more iterations, the more
   //    accurately it can represent shades very close to black and white.
   //
-  // In a real implementation, this should be done with a pingpong shading
-  // technique rendering back and forth between a pair of buffers.  This version
-  // in fact moves the image from the CPU memory to GPU memory, applies the shader
-  // and the copies it back.  Repeating that 36 times per frame.  This slows it down
-  // a fair bit!
+
   for (int t = 0; t < 36; t++) {
     
     curCanvas.beginDraw();
@@ -155,7 +151,7 @@ void draw() {
   
   if (EncoderStarted)
   {
-    CurDisplayFrameRate = Math.round( Math.max(Math.min(frameRate, DisplayFrameRate), 0.16f) );
+    CurDisplayFrameRate = Math.round( Math.min(frameRate, DisplayFrameRate) );
     
     if (!EncoderFinished && (frameCount - iStartDisplayFrameCount) > (EncoderFrameCaptureInterval / CurDisplayFrameRate))
     {
